@@ -10,19 +10,19 @@ class Array
 	public:
 		Array() { _tab = NULL; _n = 0;};
 		Array(int n) { _tab = new T[n]; _n = n; };
-		~Array() { delete _tab; };
+		~Array() { delete[] _tab; };
 		Array(const Array & src) {
 			*this = src;
  		};
 
 		T & operator[](int i) {
-			if (i >= _n)
+			if (i >= _n || i < 0)
 				throw std::out_of_range("index");
 			return _tab[i];
 		};
 
 		Array & operator=(const Array & rhs) {
-			delete _tab;
+			delete[] _tab;
 			_tab = NULL;
 			_n = rhs.size();
 			if (_n)

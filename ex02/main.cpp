@@ -7,10 +7,10 @@ int		main()
 	tab[0] = 1;
 	tab[2] = 2;
 	Array<int>	t(tab);
-	Array<int>	t2;
-	t2 = tab;
+Array<int>	*t2 = new Array<int>();
+	*t2 = tab;
 	std::cout << tab[0] << " " << tab[1] << std::endl;
 	std::cout << t[0] << " " << t[1] << std::endl;
-	std::cout << t2[0] << " " << t2[1] << std::endl;
+	std::cout << (*t2)[0] << " " << (*t2)[1] << std::endl;
 	return (0);
 }
