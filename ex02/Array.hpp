@@ -3,8 +3,7 @@
 
 # include <cstdlib>
 # include <stdexcept>
-# include <exception>
-# include <new>
+# include <iostream>
 
 template <typename T>
 class Array
@@ -20,12 +19,15 @@ class Array
 		}
 
 		Array(const Array & src) {
+			_tab = NULL;
 			*this = src;
  		}
 
 		T & operator[](int i) {
-			if (i >= _n || i < 0)
+			if (i < 0 || static_cast<unsigned int>(i) >= _n)
+			{
 				throw std::out_of_range("index");
+			}
 			return _tab[i];
 		}
 
@@ -38,7 +40,7 @@ class Array
 				_tab = new T[_n];
 				for (int i = 0; i < _n; i++)
 				{
-					_tab[i] = rhs.getTabi(i);
+					_tab[i] = rhs._tab[i];
 				}
 			}
 			else
@@ -52,10 +54,6 @@ class Array
 	private:
 		T * _tab;
 		unsigned int _n;
-		T getTabi(int i)
-		{
-			return _tab[i];
-		}
 };
 
 #endif
